@@ -1,0 +1,67 @@
+<div class="col-md-12 offset-md-1 " >
+    <form>
+      <div class="form-group row col-md-6">
+        <label for="pais" class="col-sm-4 col-form-label">Pais:</label>
+        <select  class="form-control col-sm-12 " name="country" id="country" [(ngModel)]="country">
+          <option value="ar">Argentina</option>
+          <option value="usa">Estados Unidos</option>
+          <option value="br">Brazil</option>
+          <option value="es">España</option>
+          <option value="it">Italia</option>
+         
+        </select>
+      </div>
+      <fieldset class="form-group ">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">  Casos:</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="curados" id="f" value="option1" [(ngModel)]="estadistica.varUno" >
+              <label class="form-check-label" for="curados" >
+                Curados
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="confirmados"  value="option2" [(ngModel)]="estadistica.varDos">
+              <label class="form-check-label" for="confirmados">
+                Confirmados
+              </label>
+            </div>
+            <div class="form-check ">
+              <input class="form-check-input" type="checkbox" name="fallecidos"  value="option3" [(ngModel)]="estadistica.varTres">
+              <label class="form-check-label" for="fallecidos">
+                Fallecidos
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="form-group row">
+        <div class="col-sm-10 ">
+          <button type="submit" class="btn btn-primary " (click)="cargarEstadisticas()">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ubicación</th>
+        <th scope="col">Casos Confirmados</th>
+        <th scope="col">Curados</th>
+        <th scope="col" >Fallecidos</th>
+      </tr>
+    </thead>  
+  </table>
+  <table class="table" *ngFor="let item of vector_datos">
+    <tbody>
+      <tr>
+        <th scope="row">{{item.country}}</th>
+        <td *ngIf="estadistica.varUno">{{item.confirmed}}</td>
+        <td *ngIf="estadistica.varDos">{{item.recovered}}</td>
+        <td *ngIf="estadistica.varTres">{{item.deaths}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  
